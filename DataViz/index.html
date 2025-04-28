@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Análise de Dados</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <h1>DataViz</h1>
+            </div>
+            <div class="user-info">
+                <span>Bem-vindo, Usuário</span>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </header>
+
+        <nav class="sidebar">
+            <ul>
+                <li class="active"><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-chart-bar"></i> Relatórios</a></li>
+                <li><a href="#"><i class="fas fa-database"></i> Dados</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Configurações</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <div class="page-title">
+                <h2>Dashboard de Vendas</h2>
+                <div class="date-filter">
+                    <label for="date-range">Período:</label>
+                    <select id="date-range">
+                        <option value="today">Hoje</option>
+                        <option value="week" selected>Última Semana</option>
+                        <option value="month">Último Mês</option>
+                        <option value="year">Último Ano</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <div class="stat-info">
+                        <h3>Vendas Totais</h3>
+                        <p class="stat-value">R$ <span id="total-sales">0</span></p>
+                        <p class="stat-change positive"><i class="fas fa-arrow-up"></i> <span id="sales-change">0</span>%</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-info">
+                        <h3>Novos Clientes</h3>
+                        <p class="stat-value"><span id="new-customers">0</span></p>
+                        <p class="stat-change positive"><i class="fas fa-arrow-up"></i> <span id="customers-change">0</span>%</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-box"></i></div>
+                    <div class="stat-info">
+                        <h3>Produtos Vendidos</h3>
+                        <p class="stat-value"><span id="products-sold">0</span></p>
+                        <p class="stat-change negative"><i class="fas fa-arrow-down"></i> <span id="products-change">0</span>%</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-chart-pie"></i></div>
+                    <div class="stat-info">
+                        <h3>Taxa de Conversão</h3>
+                        <p class="stat-value"><span id="conversion-rate">0</span>%</p>
+                        <p class="stat-change positive"><i class="fas fa-arrow-up"></i> <span id="conversion-change">0</span>%</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="charts-container">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Vendas por Período</h3>
+                        <div class="chart-actions">
+                            <button class="btn-chart-type active" data-type="line"><i class="fas fa-chart-line"></i></button>
+                            <button class="btn-chart-type" data-type="bar"><i class="fas fa-chart-bar"></i></button>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="sales-chart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Vendas por Categoria</h3>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="category-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Últimas Transações</h3>
+                    <div class="table-actions">
+                        <input type="text" id="search-transactions" placeholder="Buscar transações...">
+                        <button id="export-data" class="btn-export"><i class="fas fa-download"></i> Exportar</button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table id="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cliente</th>
+                                <th>Data</th>
+                                <th>Produto</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dados serão inseridos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <button id="prev-page" disabled><i class="fas fa-chevron-left"></i></button>
+                    <span id="page-info">Página 1 de 1</span>
+                    <button id="next-page" disabled><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
